@@ -10,7 +10,7 @@
  * @version 2011.07.31
  */
 public class TicketMachine
-{
+{ 
     // The price of a ticket from this machine.
     private int price;
     // The amount of money entered by a customer so far.
@@ -56,7 +56,7 @@ public class TicketMachine
         }
         else {
             System.out.println("Use a positive amount rather than: " +
-                               amount);
+                amount);
         }
     }
 
@@ -83,8 +83,8 @@ public class TicketMachine
         }
         else {
             System.out.println("You must insert at least: " +
-                               (price - balance) + " more cents.");
-                    
+                (price - balance) + " more cents.");
+
         }
     }
 
@@ -98,5 +98,19 @@ public class TicketMachine
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
+    }
+    
+    /**
+     * Vaciar maquina
+     */
+    public int emptyMachine(){
+        int cashReturn;
+        cashReturn = total + balance;
+        balance = 0;
+        total = 0; 
+        System.out.println("Empty balance = " + balance);
+        System.out.println("Empty total = " + total);
+        System.out.println("Cash return = " + cashReturn);
+        return cashReturn;
     }
 }
