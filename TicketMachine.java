@@ -104,13 +104,17 @@ public class TicketMachine
      * Vaciar maquina
      */
     public int emptyMachine(){
-        int cashReturn;
-        cashReturn = total + balance;
-        balance = 0;
-        total = 0; 
-        System.out.println("Empty balance = " + balance);
-        System.out.println("Empty total = " + total);
-        System.out.println("Cash return = " + cashReturn);
-        return cashReturn;
+        if (balance > 0){
+            System.out.println("Operacion en curso, no se puede vaciar");
+            return -1;
+        }
+        else {
+            int cashReturn;
+            cashReturn = total;
+            total = 0; 
+            System.out.println("Empty total = " + total);
+            System.out.println("Cash return = " + cashReturn);
+            return cashReturn;
+        }
     }
 }
