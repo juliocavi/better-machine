@@ -19,17 +19,19 @@ public class TicketMachine
     private int total;
     //Print a Prize
     private boolean tipoMachine;
-    
-    
+    //Max number of tickets
+    private int maximoBillete;
+        
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost, boolean maquina)
+    public TicketMachine(int cost, boolean maquina, int billeteMaximo)
     {
         price = cost;
         balance = 0;
         total = 0;
         tipoMachine = maquina;
+        maximoBillete = billeteMaximo;
     }
     
         /**
@@ -55,10 +57,18 @@ public class TicketMachine
      */
     public void insertMoney(int amount)
     {
-        if(amount > 0) {
+        if (amount > 0 & maximoBillete <= 0)
+        {
+            System.out.println("No hay billetes disponibles");
+        }
+        
+        else if(amount > 0 & maximoBillete > 0) 
+        {
             balance = balance + amount;
         }
-        else {
+        
+        else 
+        {
             System.out.println("Use a positive amount rather than: " +
                 amount);
         }
@@ -91,7 +101,8 @@ public class TicketMachine
             total = total + price;
             // Reduce the balance by the prince.
             balance = balance - price;
-        
+            // Reduce ticket´s number
+            maximoBillete = maximoBillete - 1;
         }
         else if(balance >= price & tipoMachine == false) 
         {
@@ -107,7 +118,10 @@ public class TicketMachine
             total = total + price;
             // Reduce the balance by the prince.
             balance = balance - price;
+            // Reduce ticket´s number
+            maximoBillete = maximoBillete - 1;
         }
+
         else {
             System.out.println("You must insert at least: " +
                 (price - balance) + " more cents.");
